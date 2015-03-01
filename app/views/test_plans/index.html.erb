@@ -1,2 +1,11 @@
-<h1>TestPlans#index</h1>
-<p>Find me in app/views/test_plans/index.html.erb</p>
+<h1>Test plans</h1>
+<%= link_to "New Test Plan", new_test_plan_path %>
+<div id="lista_empresas">
+  <% @test_plans.each do |test_plan| %>
+  <ul>
+    <li><strong>Name:</strong><%= test_plan.test_plan_name %></li>
+    <li><strong>Description:</strong><%= test_plan.test_plan_description %></li>
+    <li><%= link_to "Edit", edit_test_plan_path(test_plan.id) %></li>
+  </ul>
+  <% end %>
+</div>
