@@ -3,7 +3,7 @@
     <ul>
 	     <div><strong>Nome: </strong><%= @project.name %></div>
        <div><strong>Descrição: </strong><%= @project.description%></li><br>
-       <p><input type="button" value="Voltar" onClick="history.go(-1);"></p>
+       <p><%= link_to "Voltar", projects_path%></p>
   </ul>
 </div>
 
