@@ -34,6 +34,9 @@ class TestPlansController < ApplicationController
   end
 
   def destroy
+    @test_plan = TestPlan.find(params[:id])
+    @test_plan.destroy
+    redirect_to @test_plan
   end
 private
   def test_plan_params

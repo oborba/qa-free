@@ -5,7 +5,7 @@
   <ul>
     <li><strong>Name:</strong><%= test_plan.test_plan_name %></li>
     <li><strong>Description:</strong><%= test_plan.test_plan_description %></li>
-    <li><%= link_to "Edit", edit_test_plan_path(test_plan.id) %></li>
+    <li><%= link_to "Edit", edit_test_plan_path(test_plan.id) %><span> - </span><span><%= link_to 'Destroy', test_plan, method: :delete, data: { confirm: 'Are you sure' } %></span></li>
   </ul>
   <% end %>
 </div>
