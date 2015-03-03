@@ -4,28 +4,29 @@
       <h2><%= pluralize(@project.errors.count, "Erro") %>: *Os campos são obrigatórios!</h2>
 
       <ul>
-      <% @project.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+        <% @project.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
+  <ul>
+    <p>
+      <div class="field">
+        <label >Nome*:</label>
+        <%= f.text_field :name%>
+      </div>
+    </p>
 
-  <p>
-    <div class="field">
-    <label >Nome*:</label>
-    <%= f.text_field :name%>
-    </div>
-  </p>
+    <p>
+      <div class="field">
+        <label >Descrição*:</label>
+        <%= f.text_field :description%>
+      </div>
+    </p>
 
-   <p>
-    <div class="field">
-    <label >Descrição*:</label>
-    <%= f.text_field :description%>
-    </div>
- </p>
-
-  <p>
-    <button type="submit">Salvar</button>
-  </p>
+    <p>
+      <button type="submit">Salvar</button>
+    </p>
+  </ul>
 <%end%>
