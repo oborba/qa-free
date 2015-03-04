@@ -1,16 +1,19 @@
 class TestPlansController < ApplicationController
   def index
     @test_plans = TestPlan.all
+    @project = Project.find(params[:project_id])
   end
 
   def new
-    @test_plan = TestPlan.new
+    @project = Project.find(params[:project_id])
+    @test_plan = @project.test_plans.build
   end
 
   def create
+    @project = Project.find(params[:project_id])
     @test_plan = TestPlan.new(test_plan_params)
     if @test_plan.save
-      redirect_to @test_plan
+      redirect_to [@project, @test_plan]
     else
       render "new"
     end
@@ -18,16 +21,19 @@ class TestPlansController < ApplicationController
 
   def show
     @test_plan = TestPlan.find(params[:id])
+    @project = Project.find(params[:project_id])
   end
 
   def edit
     @test_plan = TestPlan.find(params[:id])
+    @project = Project.find(params[:project_id])
   end
 
   def update
+    @project = Project.find(params[:project_id])
     @test_plan = TestPlan.find(params[:id])
     if @test_plan.update(test_plan_params)
-      redirect_to @test_plan
+      redirect_to [@project, @test_plan]
     else
       render "edit"
     end 
