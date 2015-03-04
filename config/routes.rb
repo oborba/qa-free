@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
 
-  resources :projects
-  resources :test_plans
+  resources :projects do
+    resources :test_plans
+  end
   resources :tests
-
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
