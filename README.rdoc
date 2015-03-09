@@ -1,7 +1,5 @@
 == README
 
-QAFree é um projeto para gestão de casos de testes e bugs. O projeto está em fase inicial.
-
-
+QaFree is a clean test manager, focusing on being simple and usual.
 
 
