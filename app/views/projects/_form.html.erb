@@ -1,7 +1,7 @@
 <%= form_for(@project) do |f| %>
   <% if @project.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@project.errors.count, "Error") %>: *Should not be blank</h2>
+      <h2><%= pluralize(@project.errors.count, "Error") %>: * Fields are required!</h2>
 
       <ul>
         <% @project.errors.full_messages.each do |message| %>
