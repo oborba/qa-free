@@ -2,10 +2,9 @@ require 'rails_helper'
 
 RSpec.describe TestPlansController, type: :controller do
   let(:project) {Project.create!({:name => "Project Name", :description => "Project Description"}) }
-  let(:plan_params) {{id: "#{Time.now.to_i}", test_plan_name: "Plano de teste", test_plan_description: nil, created_at: "2015-03-02 20:45:20", updated_at: "2015-03-02 20:45:20"}}
-  let(:plan_params1) {{id: 1, test_plan_name: "Plano de teste", test_plan_description: nil, created_at: "2015-03-02 20:45:20", updated_at: "2015-03-02 20:45:20"}}
+  let(:plan_params) { { test_plan_name: "TestPlan", test_plan_description: "TestPlan Description", project_id: project } }
   let(:test_plan_created) {TestPlan.create(plan_params)}
-  let(:plan_params_destroy) { { test_plan_name: "TestPlan", test_plan_description: "TestPlan Description", project_id: project } }
+  
   describe "GET #index" do
     it "returns http success" do
       get :index, project_id: project
@@ -20,30 +19,33 @@ RSpec.describe TestPlansController, type: :controller do
     end
   end
 
-  describe "GET #create" do
-    it "returns http success" do
-      post :create, :test_plan => (plan_params)
-      expect(TestPlan.last).to eq(test_plan_created)
+  describe "POST #create" do
+    it "create a test plan" do
+      expect {
+        post :create, {project_id: project, test_plan: plan_params}
+      }.to change(TestPlan, :count).by(1)
     end
   end
 
   describe "GET #show" do
-    it "returns http success" do
-      get :show
-      expect(response).to have_http_status(:success)
+    it "show the requested test plan" do
+      tp = TestPlan.create(plan_params)
+      get :show, {project_id: project, id: tp}
+      expect(assigns(:test_plan)).to eq(tp)
     end
   end
 
   describe "GET #edit" do
-    it "returns http success" do
-      get :edit
-      expect(response).to have_http_status(:success)
+    it "get edit" do
+      tp = TestPlan.create(plan_params)
+      get :edit, {project_id: project, id: tp}
+      expect(assigns(:test_plan)).to eq(tp)
     end
   end
 
-  describe "#destroy" do
+  describe "DELETE #destroy" do
     it "destroy test plan" do
-      tp = TestPlan.create(plan_params_destroy)
+      tp = TestPlan.create(plan_params)
       expect {
         delete :destroy, {project_id: project, id: tp}
       }.to change(TestPlan, :count).by(-1)
