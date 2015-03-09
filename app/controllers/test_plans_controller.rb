@@ -40,9 +40,10 @@ class TestPlansController < ApplicationController
   end
 
   def destroy
+    @project = Project.find(params[:project_id])
     @test_plan = TestPlan.find(params[:id])
     @test_plan.destroy
-    redirect_to @test_plan
+    redirect_to [@project, @test_plan]
   end
 private
   def test_plan_params
