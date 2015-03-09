@@ -41,25 +41,6 @@ RSpec.describe TestPlansController, type: :controller do
     end
   end
 
-
-
-   # it "destroys the requested recipe" do
-   #   recipe = FactoryGirl.create(:recipe)
-   #   expect {
-   #     delete :destroy, {:id => recipe.to_param}
-   #   }.to change(Recipe, :count).by(-1)
-   # end
-
-   # it "redirects to the recipes list" do
-   #   recipe = FactoryGirl.create(:recipe)
-   #   delete :destroy, {:id => recipe.to_param}
-   #   expect(response).to redirect_to(recipes_url)
-   # end
-
-
-
-
-
   describe "#destroy" do
     it "destroy test plan" do
       tp = TestPlan.create(plan_params_destroy)
