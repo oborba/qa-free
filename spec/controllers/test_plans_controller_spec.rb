@@ -5,7 +5,7 @@ RSpec.describe TestPlansController, type: :controller do
   let(:plan_params) {{id: "#{Time.now.to_i}", test_plan_name: "Plano de teste", test_plan_description: nil, created_at: "2015-03-02 20:45:20", updated_at: "2015-03-02 20:45:20"}}
   let(:plan_params1) {{id: 1, test_plan_name: "Plano de teste", test_plan_description: nil, created_at: "2015-03-02 20:45:20", updated_at: "2015-03-02 20:45:20"}}
   let(:test_plan_created) {TestPlan.create(plan_params)}
-  
+  let(:plan_params_destroy) { { test_plan_name: "TestPlan", test_plan_description: "TestPlan Description", project_id: project } }
   describe "GET #index" do
     it "returns http success" do
       get :index, project_id: project
@@ -41,10 +41,31 @@ RSpec.describe TestPlansController, type: :controller do
     end
   end
 
-  describe "GET #destroy" do
-    it "returns http success" do
-      get :destroy
-      expect(response).to have_http_status(:success)
+
+
+   # it "destroys the requested recipe" do
+   #   recipe = FactoryGirl.create(:recipe)
+   #   expect {
+   #     delete :destroy, {:id => recipe.to_param}
+   #   }.to change(Recipe, :count).by(-1)
+   # end
+
+   # it "redirects to the recipes list" do
+   #   recipe = FactoryGirl.create(:recipe)
+   #   delete :destroy, {:id => recipe.to_param}
+   #   expect(response).to redirect_to(recipes_url)
+   # end
+
+
+
+
+
+  describe "#destroy" do
+    it "destroy test plan" do
+      tp = TestPlan.create(plan_params_destroy)
+      expect {
+        delete :destroy, {project_id: project, id: tp}
+      }.to change(TestPlan, :count).by(-1)
     end
   end
 end
