@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe TestsController, type: :controller do
 
+let(:test_params) {{title: 'test', description:'lala', criticality:'test', time: 1}}
   describe "GET #index" do
     it "returns http success" do
       get :index
@@ -18,37 +19,36 @@ RSpec.describe TestsController, type: :controller do
 
   describe "GET #create" do
     it "returns http success" do
-      get :create
-      expect(response).to have_http_status(:success)
+      expect{
+        post :create, {test: test_params}
+      }.to change(Test, :count).by(1)
+      
     end
   end
 
   describe "GET #show" do
     it "returns http success" do
-      get :show
-      expect(response).to have_http_status(:success)
-    end
-  end
+      test = Test.create(test_params)
+      get :show, id: test
+      expect(assigns(:test)).to eq(test)
 
-  describe "GET #destroy" do
-    it "returns http success" do
-      get :destroy
-      expect(response).to have_http_status(:success)
-    end
-  end
-
-  describe "GET #update" do
-    it "returns http success" do
-      get :update
-      expect(response).to have_http_status(:success)
     end
   end
 
   describe "GET #edit" do
     it "returns http success" do
-      get :edit
-      expect(response).to have_http_status(:success)
+      test = Test.create(test_params)
+      get :edit, {id: test}
+      expect(assigns(:test)).to eq(test)
     end
   end
 
+  describe "GET #destroy" do
+    it "returns http success" do
+      test = Test.create(test_params)
+      expect{
+        delete :destroy, {id: test }
+      }.to change(Test, :count).by(-1)
+    end
+  end
 end
