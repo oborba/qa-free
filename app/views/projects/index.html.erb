@@ -1,15 +1,15 @@
-<h1>Lista de Projetos</h1>
+<h1>Project List</h1>
 <div>
 	<ul>
-		<%= link_to "Cadastrar Projeto", new_project_path %>
+		<%= link_to "New project", new_project_path %>
 	</ul>	
   	<% @project.each do |project| %>
   		<ul>
-			<div><strong>Nome:</strong><%= project.name%></div>
-    		<div><strong>Descrição:</strong><%= project.description %></div>
-    		<div><%= link_to 'Detalhes', project %></div>
-    		<div><%= link_to "Editar", edit_project_path(project.id) %></div>
-    		<div><%= link_to 'Deletar', project, method: :delete, data: { confirm: 'Deseja realmente deletar o projeto?' } %></div>
+			<div><strong>Name:</strong><%= project.name%></div>
+    		<div><strong>Description:</strong><%= project.description %></div>
+    		<div><%= link_to 'Details', project %></div>
+    		<div><%= link_to "Edit", edit_project_path(project.id) %></div>
+    		<div><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></div>
   		</ul>
   	<% end %>
 </div>
