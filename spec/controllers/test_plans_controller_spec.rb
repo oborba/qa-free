@@ -5,6 +5,15 @@ RSpec.describe TestPlansController, type: :controller do
   let(:plan_params) { { test_plan_name: "TestPlan", test_plan_description: "TestPlan Description", project_id: project } }
   let(:test_plan_created) {TestPlan.create(plan_params)}
   
+  before do 
+    @user = User.create!({
+    :email => 'users@test.com',
+    :password => '12please',
+    :password_confirmation => '12please' 
+   })
+    sign_in @user
+  end
+
   describe "GET #index" do
     it "returns http success" do
       get :index, project_id: project

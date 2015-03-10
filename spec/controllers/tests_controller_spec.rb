@@ -1,8 +1,17 @@
 require 'rails_helper'
 
 RSpec.describe TestsController, type: :controller do
+  let(:test_params) {{title: 'test', description:'lala', criticality:'test', time: 1}}
+  
+  before do 
+    @user = User.create!({
+    :email => 'users@test.com',
+    :password => '12please',
+    :password_confirmation => '12please' 
+   })
+    sign_in @user
+  end  
 
-let(:test_params) {{title: 'test', description:'lala', criticality:'test', time: 1}}
   describe "GET #index" do
     it "returns http success" do
       get :index
