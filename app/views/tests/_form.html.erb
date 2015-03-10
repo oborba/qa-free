@@ -28,7 +28,7 @@
     <p>
       <div class="field">
         <label >Criticality*:</label>
-        <%= f.text_field :criticality%>
+        <%= f.select(:criticality, options_for_select([['Low', "Low"], ['Medium', "Medium"],['Critical', "Critical"]])) %>
       </div>
     </p>
 
