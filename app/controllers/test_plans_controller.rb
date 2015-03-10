@@ -1,4 +1,6 @@
 class TestPlansController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     @test_plans = TestPlan.all
     @project = Project.find(params[:project_id])
