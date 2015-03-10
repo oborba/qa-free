@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe TestsController, type: :controller do
-  let(:test_params) {{title: 'test', description:'lala', criticality:'test', time: 1}}
+  let(:test_params) {{title: 'test', description:'lala', criticality:'Low', time: 1}}
   
   before do 
     @user = User.create!({
