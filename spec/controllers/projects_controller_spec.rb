@@ -1,6 +1,16 @@
 require 'rails_helper'
 
 RSpec.describe ProjectsController, type: :controller do
+  let(:project_params) {{name: 'test', description:'lala'}}
+
+before do 
+    @user = User.create!({
+    :email => 'users@test.com',
+    :password => '12please',
+    :password_confirmation => '12please' 
+   })
+    sign_in @user
+  end  
 
   describe "GET #index" do
     it "returns http success" do
@@ -18,37 +28,34 @@ RSpec.describe ProjectsController, type: :controller do
 
   describe "GET #create" do
     it "returns http success" do
-      get :create
-      expect(response).to have_http_status(:success)
+      expect{
+        post :create, {project: project_params}
+      }.to change(Project, :count).by(1)
     end
   end
 
   describe "GET #show" do
     it "returns http success" do
-      get :show
-      expect(response).to have_http_status(:success)
-    end
-  end
-
-  describe "GET #destroy" do
-    it "returns http success" do
-      get :destroy
-      expect(response).to have_http_status(:success)
-    end
-  end
-
-  describe "GET #update" do
-    it "returns http success" do
-      get :update
-      expect(response).to have_http_status(:success)
+      project = Project.create(project_params)
+      get :show, id: project
+      expect(assigns(:project)).to eq(project)
     end
   end
 
   describe "GET #edit" do
     it "returns http success" do
-      get :edit
-      expect(response).to have_http_status(:success)
+      project = Project.create(project_params)
+      get :edit, {id: project}
+      expect(assigns(:project)).to eq(project)
     end
   end
 
+  describe "GET #destroy" do
+    it "returns http success" do
+      project = Project.create(project_params)
+      expect{
+        delete :destroy, {id: project }
+      }.to change(Project, :count).by(-1)
+    end
+  end
 end
