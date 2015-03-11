@@ -1,5 +1,6 @@
 class TestsController < ApplicationController
-  before_action :authenticate_user!
+  before_filter :check_user_logged_in!
+
 
   def index
     @test = Test.all
@@ -44,5 +45,15 @@ end
   private
   def test_params
     params.require(:test).permit(:title, :description, :criticality, :time)
+  end
+
+  def check_admin_logged_in!
+    authenticate_admin!
+  end
+  
+  def check_user_logged_in!
+    if !admin_signed_in?
+      authenticate_user!
+    end   
   end
 end
