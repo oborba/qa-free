@@ -1,15 +1,19 @@
 <h1>Project List</h1>
 <div>
-	<ul>
-		<%= link_to "New project", new_project_path %>
-	</ul>	
+  <% if admin_signed_in?%>
+  	<ul>
+  		<%= link_to "New project", new_project_path %>
+  	</ul>
+  <% end %>	
   	<% @project.each do |project| %>
   		<ul>
 			<div><strong>Name:</strong><%= project.name%></div>
     		<div><strong>Description:</strong><%= project.description %></div>
     		<div><%= link_to 'Details', project %></div>
-    		<div><%= link_to "Edit", edit_project_path(project.id) %></div>
-    		<div><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></div>
-  		</ul>
+    		<% if admin_signed_in? %>
+          <div><%= link_to "Edit", edit_project_path(project.id) %></div>
+       		<div><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></div>
+  		  <% end %>
+      </ul>
   	<% end %>
 </div>
