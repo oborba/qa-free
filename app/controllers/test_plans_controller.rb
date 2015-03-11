@@ -1,5 +1,6 @@
 class TestPlansController < ApplicationController
-  before_action :authenticate_user!
+
+  before_filter :check_user_logged_in!
 
   def index
     @test_plans = TestPlan.all
@@ -50,5 +51,15 @@ class TestPlansController < ApplicationController
 private
   def test_plan_params
     params.require(:test_plan).permit(:test_plan_name, :test_plan_description) 
+  end
+
+  def check_admin_logged_in!
+    authenticate_admin!
+  end
+  
+  def check_user_logged_in!
+    if !admin_signed_in?
+      authenticate_user!
+    end   
   end
 end
