@@ -1,5 +1,8 @@
 class ProjectsController < ApplicationController
-  before_action :verify_login, only: [:show, :index]
+  before_filter :check_admin_logged_in!, :except => [:show, :index]
+
+  before_filter :check_user_logged_in!, :only => [:show, :index]
+
   def index
     @project = Project.all
   end
@@ -44,9 +47,14 @@ end
   def project_params
     params.require(:project).permit(:name, :description)
   end
-  def verify_login
-    unless user_signed_in? || admin_signed_in?
-      redirect_to new_user_session_path
-    end
+
+  def check_admin_logged_in!
+    authenticate_admin!
+  end
+  
+  def check_user_logged_in!
+    if !admin_signed_in?
+      authenticate_user!
+    end   
   end
 end
