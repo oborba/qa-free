@@ -4,12 +4,12 @@ RSpec.describe ProjectsController, type: :controller do
   let(:project_params) {{name: 'test', description:'lala'}}
 
 before do 
-    @user = User.create!({
-    :email => 'users@test.com',
+    @admin = Admin.create!({
+    :email => 'admin@test.com',
     :password => '12please',
     :password_confirmation => '12please' 
    })
-    sign_in @user
+    sign_in @admin
   end  
 
   describe "GET #index" do
