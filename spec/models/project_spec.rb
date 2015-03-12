@@ -19,7 +19,15 @@ RSpec.describe Project, type: :model do
     it "do not save whitout a name" do
       project = Project.new
       project.description = 'description'
+      project.save
       expect(project.persisted?).to be false 
+    end
+
+    it "save whitout a description" do
+      project = Project.new
+      project.name = 'name'
+      project.save
+      expect(project.persisted?).to be true 
     end
   end
 end
