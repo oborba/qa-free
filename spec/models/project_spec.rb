@@ -15,6 +15,12 @@ RSpec.describe Project, type: :model do
       project = Project.create
       expect(project.persisted?).to be false
     end
+
+    it "do not save whitout a name" do
+      project = Project.new
+      project.description = 'description'
+      expect(project.persisted?).to be false 
+    end
   end
 end
 
