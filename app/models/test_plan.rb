@@ -1,4 +1,6 @@
 class TestPlan < ActiveRecord::Base
-	belongs_to :project
-	validates_presence_of :test_plan_name
+  has_and_belongs_to_many :tests
+
+  belongs_to :project
+  validates_presence_of :test_plan_name
 end
