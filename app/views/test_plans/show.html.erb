@@ -1,19 +1,25 @@
 <h1><%= @test_plan.test_plan_name%> | Test Plan</h1>
 <div>
-    <ul>
-      <li>
-      	<strong>Description:</strong>
-      	<%= @test_plan.test_plan_description %>
-      </li>
-      <li>
-      	<strong>Project</strong>
-      	<%= @project.name %>
-      </li>
-      <li>
-				<%= link_to "Edit", edit_project_test_plan_path %>
-      </li>
-      <li>
-        <%= link_to 'Destroy', [@project, @test_plan], method: :delete, data: { confirm: 'Are you sure?' } %>
-      </li>
-    </ul>
+  <ul>
+    <li>
+    	<strong>Description:</strong>
+    	<%= @test_plan.test_plan_description %>
+    </li>
+    <li>
+    	<strong>Project</strong>
+    	<%= @project.name %>
+    </li>
+    <li>
+			<%= link_to "Edit", edit_project_test_plan_path %>
+    </li>
+    <li>
+      <%= link_to 'Destroy', [@project, @test_plan], method: :delete, data: { confirm: 'Are you sure?' } %>
+    </li>
+  </ul>
+  <h2>Test Cases</h2>
+  <ul>
+    <% @test_plan.tests.each do |test| %>
+      <li><%= link_to test.title, "/tests/#{test.id}"%></li>
+    <% end %>
+  </ul>
 </div>
