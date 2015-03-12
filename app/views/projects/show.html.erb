@@ -3,11 +3,17 @@
   <ul>
     <li><strong>Name: </strong><%= @project.name %></li>
     <li><strong>Description: </strong><%= @project.description%></li><br>
-    <p><%= link_to "Back", projects_path%>
-    
-    <% if admin_signed_in? %>
-      <span> <%= link_to "Editar", edit_project_path%></span>
-    <% end %>
+    <p>
+      <%= link_to "Back", projects_path%>
+      <% if admin_signed_in? %>
+       <span> <%= link_to "Editar", edit_project_path%></span>
+      <% end %>
     </p>
+  </ul>
+  <h2>Test Plans</h2>
+  <ul>
+    <% @project.test_plans.each do |tp| %>
+      <li><%= link_to tp.test_plan_name, "/projects/#{@project.id}/test_plans/#{tp.id}"%></li>
+    <% end %>
   </ul>
 </div>
