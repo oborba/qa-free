@@ -1,11 +1,23 @@
 <%= form_tag(controller: "register_user", action: "create", method: "post") do%>
-  <%= label_tag(:email, "Email*:") %>
-  <%= text_field_tag(:email) %>
+  
+  <ul>
+    <p>
+      <div><%= label_tag(:email, "Email*:") %></div>
+      <%= text_field_tag(:email) %>
+    </p>
 
-  <%= label_tag(:password, "Password*:") %>
-  <%= text_field_tag(:password) %>
+    <p>
+      <div><%= label_tag(:password, "Password*:") %></div>
+      <%= text_field_tag(:password) %>
+    </p>
 
-  <%= label_tag(:confirm_password, "Confirm Password*:") %>
-  <%= text_field_tag(:confirm_password) %>
-  <%= submit_tag("Submit") %>
+    <p>
+      <div><%= label_tag(:confirm_password, "Confirm Password*:") %></div>
+      <%= text_field_tag(:confirm_password) %>
+    <p>
+
+    <p>
+      <div><%= submit_tag("Save") %></div>
+    </p>
+  </ul> 
 <% end %>
