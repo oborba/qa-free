@@ -1,4 +1,8 @@
 class RegisterUserController < ApplicationController
+  def index
+    @register = User.all
+  end
+
   def new
   	@register = User.new
   end
@@ -6,7 +10,7 @@ class RegisterUserController < ApplicationController
   def create
   	@register = User.new(register_params)
 		if @register.save
-      redirect_to root_path
+      redirect_to @register
     else
       render "new"
     end
@@ -19,6 +23,6 @@ class RegisterUserController < ApplicationController
   end
 private
   def register_params
-    params.require(:register_user).permit(:email, :password, :confirm_password)
+    params.permit(:email, :password)
   end
 end
