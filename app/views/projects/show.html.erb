@@ -15,5 +15,6 @@
     <% @project.test_plans.each do |tp| %>
       <li><%= link_to tp.test_plan_name, "/projects/#{@project.id}/test_plans/#{tp.id}"%></li>
     <% end %>
+    <%= link_to "New Test Plan", "/projects/#{@project.id}/test_plans/new" %>
   </ul>
 </div>
