@@ -7,5 +7,5 @@ Rails.application.routes.draw do
   resources :projects do
     resources :test_plans
   end
-  resources :tests
+  resources :test_cases
 end
