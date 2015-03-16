@@ -4,9 +4,8 @@ RSpec.describe RegisterUserController, type: :controller do
 
   describe "GET #register" do
     it "returns http success" do
-      get :register
+      get :new
       expect(response).to have_http_status(:success)
     end
   end
-
 end
