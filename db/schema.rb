@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150312000649) do
+ActiveRecord::Schema.define(version: 20150316232436) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -38,6 +38,23 @@ ActiveRecord::Schema.define(version: 20150312000649) do
     t.text     "description"
   end
 
+  create_table "test_cases", force: :cascade do |t|
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "title"
+    t.string   "description"
+    t.string   "criticality"
+    t.integer  "time"
+  end
+
+  create_table "test_cases_plans", id: false, force: :cascade do |t|
+    t.integer "test_plan_id", null: false
+    t.integer "test_case_id", null: false
+  end
+
+  add_index "test_cases_plans", ["test_case_id", "test_plan_id"], name: "index_test_cases_plans_on_test_case_id_and_test_plan_id"
+  add_index "test_cases_plans", ["test_plan_id", "test_case_id"], name: "index_test_cases_plans_on_test_plan_id_and_test_case_id"
+
   create_table "test_plans", force: :cascade do |t|
     t.string   "test_plan_name"
     t.text     "test_plan_description"
@@ -47,23 +64,6 @@ ActiveRecord::Schema.define(version: 20150312000649) do
   end
 
   add_index "test_plans", ["project_id"], name: "index_test_plans_on_project_id"
-
-  create_table "test_plans_tests", id: false, force: :cascade do |t|
-    t.integer "test_plan_id", null: false
-    t.integer "test_id",      null: false
-  end
-
-  add_index "test_plans_tests", ["test_id", "test_plan_id"], name: "index_test_plans_tests_on_test_id_and_test_plan_id"
-  add_index "test_plans_tests", ["test_plan_id", "test_id"], name: "index_test_plans_tests_on_test_plan_id_and_test_id"
-
-  create_table "tests", force: :cascade do |t|
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.string   "title"
-    t.string   "description"
-    t.string   "criticality"
-    t.integer  "time"
-  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
