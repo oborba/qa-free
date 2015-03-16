@@ -15,6 +15,7 @@ class TestPlansController < ApplicationController
   def create
     @project = Project.find(params[:project_id])
     @test_plan = TestPlan.new(test_plan_params)
+    @test_plan.project = @project
     if @test_plan.save
       redirect_to [@project, @test_plan]
     else
