@@ -29,7 +29,7 @@ RSpec.describe TestCasesController, type: :controller do
   describe "GET #create" do
     it "returns http success" do
       expect{
-        post :create, {test: test_params}
+        post :create, {test_case: test_params}
       }.to change(TestCase, :count).by(1)
       
     end
