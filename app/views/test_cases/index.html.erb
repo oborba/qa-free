@@ -1,7 +1,7 @@
 <h1>Test Case List</h1>
 <div>
 	<ul>
-		<%= link_to "Registration Test Case", new_test_path %>
+		<%= link_to "New Test Case", new_test_case_path %>
 	</ul>	
   	<% @test.each do |test| %>
   		<ul>
@@ -10,7 +10,7 @@
       <div><strong>Criticality:</strong><%= test.criticality%></div>
       <div><strong>Time:</strong><%= test.time%></div>
     		<div><%= link_to 'Details', test %></div>
-    		<div><%= link_to "Edit", edit_test_path(test.id) %></div>
+    		<div><%= link_to "Edit", edit_test_case_path(test.id) %></div>
     		<div><%= link_to 'Delete', test, method: :delete, data: { confirm: 'Do you really want to delete the test case?' } %></div>
   		</ul>
   	<% end %>
