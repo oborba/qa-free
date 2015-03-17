@@ -44,7 +44,7 @@ class TestCasesController < ApplicationController
   
   private
   def test_params
-    params.require(:test).permit(:title, :description, :criticality, :time)
+    params.require(:test_case).permit(:title, :description, :criticality, :time)
   end
 
   def check_admin_logged_in!
