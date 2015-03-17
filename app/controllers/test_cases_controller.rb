@@ -13,7 +13,7 @@ class TestCasesController < ApplicationController
   def create
     @test = TestCase.new(test_params)
     if @test.save
-      redirect_to @test
+      redirect_to test_cases_path
     else
       render "new"
     end
