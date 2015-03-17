@@ -1,7 +1,7 @@
   <div class="row col-md-8 col-md-offset-1">
-    <h1 class="inline">Projects</h1>
+    <h1 class="pull-left">Projects</h1>
     <% if admin_signed_in?%>
-      <%= link_to "New project", new_project_path, class: "btn btn-primary" %>
+      <span class="pull-right new-project"> <%= link_to "New project", new_project_path, class: "btn btn-primary" %> </span>
     <% end %>
   </div>
   <div class="row col-md-8 col-md-offset-1">
@@ -20,6 +20,3 @@
       </tbody>
     </table>
   </div>
-  <% if admin_signed_in?%>  
-      <%= link_to "New User", new_register_user_path %>
-  <% end %>
