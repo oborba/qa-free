@@ -1,9 +1,9 @@
 <h1>Project List</h1>
 <div>
   <% if admin_signed_in?%>
-  	<ul>
   		<%= link_to "New project", new_project_path %>
-  	</ul>
+      <br>
+      <%= link_to "New User", new_register_user_path %>
   <% end %>	
   	<% @project.each do |project| %>
   		<ul>
