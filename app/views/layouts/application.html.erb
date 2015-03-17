@@ -8,21 +8,40 @@
 </head>
 <body>
 	<div class="container-fluid">
-		<% if user_signed_in? %>
-			<p>
-				Olá <%= current_user.email%>
-				<span>
-					<%= link_to "Logout", destroy_user_session_path, :method => :delete %>
-				</span>
-			</p>
-		<% elsif admin_signed_in? %>
-			<p>
-				Olá <%= current_admin.email%>
-				<span>
-					<%= link_to "Logout", destroy_admin_session_path, :method => :delete %>
-				</span>
-			</p>
-		<% end %>
+		<div class="buttons pull-right">
+			<div class="pull-left">
+				<% if user_signed_in? %>
+					<p>
+						Olá <%= current_user.email%>
+					</p>
+				<% elsif admin_signed_in? %>
+					<p>
+						Olá <%= current_admin.email%>
+					</p>
+				<% end %>
+			</div>
+	<!-- Single button -->
+			<% if user_signed_in? || admin_signed_in? %>
+				<div class="btn-group pull-right">
+					<button type="button" class="btn btn-default dropdown-toggle glyphicon glyphicon-menu-hamburger
+" data-toggle="dropdown" aria-expanded="false">
+				  </button>
+				  <ul class="dropdown-menu" role="menu">
+				    <li>
+				    	<% if admin_signed_in?%>  
+		      			<%= link_to "New User", new_register_user_path %>
+		  				<% end %>
+		  			</li>
+				    <li class="divider"></li>
+						<% if user_signed_in? %>
+							<li><%= link_to "Logout", destroy_user_session_path, :method => :delete %></li>
+						<% elsif admin_signed_in? %>
+							<li><%= link_to "Logout", destroy_admin_session_path, :method => :delete %></li>
+						<% end %>
+				  </ul>
+				</div>
+			<% end %>
+		</div>
 		<%= yield %>
 	</div>
 </body>
