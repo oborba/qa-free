@@ -5,11 +5,11 @@
 	</ul>	
   	<% @test.each do |test| %>
   		<ul>
-      <div><strong>Status:</strong><%= test.status%></div>
-			<div><strong>Title:</strong><%= test.title%></div>
-      <div><strong>Description:</strong><%= test.description %></div>
-      <div><strong>Criticality:</strong><%= test.criticality%></div>
-      <div><strong>Time:</strong><%= test.time%></div>
+        <div><strong>Title:</strong><%= test.title%></div>
+        <div><strong>Description:</strong><%= test.description %></div>
+        <div><strong>Time:</strong><%= test.time%></div>
+        <div><strong>Status:</strong><%= test.status%></div>
+        <div><strong>Criticality:</strong><%= test.criticality%></div>
     		<div><%= link_to 'Details', "#{test.id}" %></div>
     		<div><%= link_to "Edit", "test_cases/#{test.id}/edit" %></div>
     		<div><%= link_to 'Destroy', [@project, test], method: :delete, data: { confirm: 'Are you sure?' } %></div>
