@@ -4,16 +4,20 @@ class TestCasesController < ApplicationController
 
   def index
     @test = TestCase.all
+    @project = Project.find(params[:project_id])
   end
 
   def new
     @test = TestCase.new
+    @project = Project.find(params[:project_id])
   end
 
   def create
+    @project = Project.find(params[:project_id])
     @test = TestCase.new(test_params)
+    @test.project = @project
     if @test.save
-      redirect_to test_cases_path
+      redirect_to [@project, @test]
     else
       render "new"
     end
@@ -24,15 +28,17 @@ class TestCasesController < ApplicationController
   end
 
   def destroy
+    @project = Project.find(params[:project_id])
     @test = TestCase.find(params[:id])
     @test.destroy
-    redirect_to @test
+    redirect_to [@project, @test]
   end
 
   def update
+    @project = Project.find(params[:project_id])
     @test = TestCase.find(params[:id])
     if @test.update(test_params)
-      redirect_to @test
+      redirect_to [@project, @test_case]
     else
       render "edit"
     end
