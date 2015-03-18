@@ -20,8 +20,8 @@
           <tr>
             <td class="col-md-9"><%= tc.title%></td>
             <td class="col-md-3">
-              <%= link_to "", "/test_cases/#{tc.id}", class: "glyphicon glyphicon-search col-md-4 details" %>
-              <%= link_to "", edit_test_case_path, class: "glyphicon glyphicon-pencil col-md-4 edit_icon" %>
+              <%= link_to "", project_test_case_path(@project, tc), class: "glyphicon glyphicon-search col-md-4 details" %>
+              <%= link_to "", edit_project_test_case_path(@project, tc), class: "glyphicon glyphicon-pencil col-md-4 edit_icon" %>
             </td>
           </tr>
         <% end %>
