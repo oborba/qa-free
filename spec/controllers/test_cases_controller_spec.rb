@@ -2,7 +2,8 @@ require 'rails_helper'
 
 RSpec.describe TestCasesController, type: :controller do
   let(:test_params) {{title: 'test', description:'lala', criticality:'Low', time: 1}}
-  
+  let(:project) {Project.create!({:name => "Project Name", :description => "Project Description"}) }  
+
   before do 
     @user = User.create!({
     :email => 'users@test.com',
@@ -14,22 +15,22 @@ RSpec.describe TestCasesController, type: :controller do
 
   describe "GET #index" do
     it "returns http success" do
-      get :index
+      get :index, project_id: project
       expect(response).to have_http_status(:success)
     end
   end
 
   describe "GET #new" do
     it "returns http success" do
-      get :new
+      get :new, project_id: project
       expect(response).to have_http_status(:success)
     end
   end
 
-  describe "GET #create" do
+  describe "POST #create" do
     it "returns http success" do
       expect{
-        post :create, {test_case: test_params}
+        post :create, { project_id: project.id, test_case: test_params }
       }.to change(TestCase, :count).by(1)
       
     end
@@ -38,7 +39,7 @@ RSpec.describe TestCasesController, type: :controller do
   describe "GET #show" do
     it "returns http success" do
       test = TestCase.create(test_params)
-      get :show, id: test
+      get :show, {project_id: project, id: test}
       expect(assigns(:test)).to eq(test)
     end
   end
@@ -46,7 +47,7 @@ RSpec.describe TestCasesController, type: :controller do
   describe "GET #edit" do
     it "returns http success" do
       test = TestCase.create(test_params)
-      get :edit, {id: test}
+      get :edit, {project_id: project, id: test}
       expect(assigns(:test)).to eq(test)
     end
   end
@@ -55,7 +56,7 @@ RSpec.describe TestCasesController, type: :controller do
     it "returns http success" do
       test = TestCase.create(test_params)
       expect{
-        delete :destroy, {id: test}
+        delete :destroy, {project_id: project, id: test}
       }.to change(TestCase, :count).by(-1)
     end
   end
