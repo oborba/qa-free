@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe TestCase, type: :model do
 
-  let(:test_params) { { title: "Title", description: "Description", criticality: "Low", time: 20 } }
+  let(:test_params) { { status:"Blocked", title: "Title", description: "Description", criticality: "Low", time: 20 } }
   let(:test_plan) { TestPlan.create({ test_plan_name: "TestPlan Name", test_plan_description: "Test Plan Description" }) }
 
   describe "Presence Validate" do

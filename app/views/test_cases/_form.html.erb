@@ -11,6 +11,14 @@
     </div>
   <% end %>
   <ul>
+
+    <p>
+      <div class="field">
+        <label >Status*:</label>
+        <%= f.select(:status, options_for_select([['Not Executed', "Not_Executed"], ['Blocked', "Blocked"], ['Passed', "Passed"], ['Failure', "Failure"]])) %>
+      </div>
+    </p>
+
     <p>
       <div class="field">
         <label >Title*:</label>

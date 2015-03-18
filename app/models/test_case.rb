@@ -5,4 +5,5 @@ class TestCase < ActiveRecord::Base
   validates_length_of :title, maximum: 100
 	validates_numericality_of :time
   validates :criticality, inclusion: { in: %w(Low Medium Critical)}
+  validates :status, inclusion: { in: %w(Not_Executed Blocked Passed Failure)}
 end
