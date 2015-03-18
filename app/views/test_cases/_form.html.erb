@@ -11,14 +11,7 @@
     </div>
   <% end %>
   <ul>
-
-    <p>
-      <div class="field">
-        <label >Status*:</label>
-        <%= f.select(:status, options_for_select([['Not Executed', "Not_Executed"], ['Blocked', "Blocked"], ['Passed', "Passed"], ['Failure', "Failure"]])) %>
-      </div>
-    </p>
-
+    
     <p>
       <div class="field">
         <label >Title*:</label>
@@ -35,17 +28,25 @@
 
     <p>
       <div class="field">
-        <label >Criticality*:</label>
-        <%= f.select(:criticality, options_for_select([['Low', "Low"], ['Medium', "Medium"],['Critical', "Critical"]])) %>
+        <label >Time*:</label>
+        <%= f.text_field :time, class:"form-control"%>
       </div>
     </p>
 
     <p>
       <div class="field">
-        <label >Time*:</label>
-        <%= f.text_field :time, class:"form-control"%>
+        <label >Status*:</label>
+        <%= f.select(:status, options_for_select([['Not Executed', "Not_Executed"], ['Blocked', "Blocked"], ['Passed', "Passed"], ['Failure', "Failure"]])) %>
       </div>
     </p>
+
+    <p>
+      <div class="field">
+        <label >Criticality*:</label>
+        <%= f.select(:criticality, options_for_select([['Low', "Low"], ['Medium', "Medium"],['Critical', "Critical"]])) %>
+      </div>
+    </p>
+
     <%= hidden_field :test_plan, :id %>
     <p>
       <button type="submit">Save</button>

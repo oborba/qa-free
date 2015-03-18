@@ -1,11 +1,11 @@
 <h1>Details Test Case</h1>
 <div>
     <ul>
-    	<div><strong>Status:</strong><%= @test.status%></div>
-	    <div><strong>Title:</strong><%= @test.title%></div>
+    	<div><strong>Title:</strong><%= @test.title%></div>
     	<div><strong>Description:</strong><%= @test.description %></div>
-    	<div><strong>Criticality:</strong><%= @test.criticality%></div>
     	<div><strong>Time:</strong><%= @test.time%></div>
+    	<div><strong>Status:</strong><%= @test.status%></div>
+      <div><strong>Criticality:</strong><%= @test.criticality%></div>
        	<p><%= link_to "Back", project_test_cases_path%></p>
   </ul>
 </div>
