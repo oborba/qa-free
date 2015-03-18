@@ -15,9 +15,9 @@ class TestCasesController < ApplicationController
 
   def create
     @project = Project.find(params[:project_id])
-    test_plan = TestPlan.find(params[:test_plan][:id])
+    @test_plan = TestPlan.find(params[:test_plan][:id])
     @test = TestCase.new(test_params)
-    @test.test_plans << test_plan
+    @test.test_plans << @test_plan
     @test.project = @project
     if @test.save
       redirect_to [@project, @test]
