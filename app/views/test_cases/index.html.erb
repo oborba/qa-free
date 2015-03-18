@@ -9,8 +9,8 @@
       <div><strong>Description:</strong><%= test.description %></div>
       <div><strong>Criticality:</strong><%= test.criticality%></div>
       <div><strong>Time:</strong><%= test.time%></div>
-    		<div><%= link_to 'Details', "project/#{@project}/test_cases/#{test}" %></div>
-    		<div><%= link_to "Edit", "project/#{@project}/test_cases/#{test}/edit" %></div>
+    		<div><%= link_to 'Details', "#{test.id}" %></div>
+    		<div><%= link_to "Edit", "test_cases/#{test.id}/edit" %></div>
     		<div><%= link_to 'Destroy', [@project, test], method: :delete, data: { confirm: 'Are you sure?' } %></div>
   		</ul>
   	<% end %>

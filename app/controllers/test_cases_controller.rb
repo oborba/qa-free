@@ -25,6 +25,7 @@ class TestCasesController < ApplicationController
 
   def show
     @test = TestCase.find_by_id(params[:id])
+    @project = Project.find(params[:project_id])
   end
 
   def destroy
@@ -38,7 +39,7 @@ class TestCasesController < ApplicationController
     @project = Project.find(params[:project_id])
     @test = TestCase.find(params[:id])
     if @test.update(test_params)
-      redirect_to [@project, @test_case]
+      redirect_to [@project, @test]
     else
       render "edit"
     end
@@ -46,6 +47,7 @@ class TestCasesController < ApplicationController
   
   def edit
     @test = TestCase.find(params[:id])
+    @project = Project.find(params[:project_id])
   end
   
   private
