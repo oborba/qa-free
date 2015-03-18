@@ -6,6 +6,6 @@ Rails.application.routes.draw do
 
   resources :projects do
     resources :test_plans
+	  resources :test_cases
   end
-  resources :test_cases
 end

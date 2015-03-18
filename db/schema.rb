@@ -45,8 +45,11 @@ ActiveRecord::Schema.define(version: 20150317232635) do
     t.string   "description"
     t.string   "criticality"
     t.integer  "time"
+    t.integer  "project_id"
     t.string   "status"
   end
+
+  add_index "test_cases", ["project_id"], name: "index_test_cases_on_project_id"
 
   create_table "test_cases_plans", id: false, force: :cascade do |t|
     t.integer "test_plan_id", null: false
