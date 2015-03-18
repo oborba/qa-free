@@ -3,7 +3,8 @@ require 'rails_helper'
 RSpec.describe TestCasesController, type: :controller do
 
   let(:test_params) {{status: 'Blocked', title: 'test', description:'lala', criticality:'Low', time: 1}}
-  let(:project) {Project.create!({:name => "Project Name", :description => "Project Description"}) }  
+  let(:project) {Project.create!({:name => "Project Name", :description => "Project Description"}) }
+  let(:test_plan) {TestPlan.create!({test_plan_name:"Test Plan"})}
 
   before do 
     @user = User.create!({
@@ -23,7 +24,8 @@ RSpec.describe TestCasesController, type: :controller do
 
   describe "GET #new" do
     it "returns http success" do
-      get :new, project_id: project
+      get :new, project_id: project, test_plan: test_plan
+      expect(assigns[:test_plan]).to be_a TestPlan
       expect(response).to have_http_status(:success)
     end
   end
@@ -31,7 +33,7 @@ RSpec.describe TestCasesController, type: :controller do
   describe "POST #create" do
     it "returns http success" do
       expect{
-        post :create, { project_id: project.id, test_case: test_params }
+        post :create, { project_id: project.id, test_case: test_params, test_plan: {id: test_plan.id}}
       }.to change(TestCase, :count).by(1)
       
     end

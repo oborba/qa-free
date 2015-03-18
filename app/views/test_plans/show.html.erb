@@ -11,7 +11,7 @@
 <div class="row col-md-12">
   <div class="row col-md-8">
     <h2 class="pull-left">Test Cases</h2>
-    <span class="pull-right new-project"> <%= link_to "New Test Case", new_project_test_case_path, class: "btn btn-primary" %> </span>
+    <span class="pull-right new-project"> <%= link_to "New Test Case", new_project_test_case_path(test_plan: @test_plan.id), class: "btn btn-primary" %> </span>
   </div>
   <div class="row col-md-8">
     <table class="table table-hover">

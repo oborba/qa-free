@@ -19,9 +19,9 @@ gem 'bootstrap-sass', '~> 3.3.3'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0'
+  gem 'pry-rails'
+  gem 'awesome_print'
 end
-
-gem 'bootstrap-sass', '~> 3.3.3'
 
 gem 'devise'
 
