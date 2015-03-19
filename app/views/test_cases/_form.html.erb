@@ -47,7 +47,9 @@
       </div>
     </p>
 
-    <%= hidden_field :test_plan, :id %>
+    <% if @test_plan %>
+      <%= hidden_field :test_plan, :id %>
+    <% end %>
     <p>
       <button type="submit">Save</button>
     </p>
