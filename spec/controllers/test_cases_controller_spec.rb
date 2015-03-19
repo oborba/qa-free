@@ -31,11 +31,16 @@ RSpec.describe TestCasesController, type: :controller do
   end
 
   describe "POST #create" do
-    it "returns http success" do
+    it "create with a test_plan reference" do
       expect{
         post :create, { project_id: project.id, test_case: test_params, test_plan: {id: test_plan.id}}
       }.to change(TestCase, :count).by(1)
-      
+    end
+
+    it "create without a test_plan reference" do
+      expect{
+        post :create, {project_id: project.id, test_case: test_params}
+      }.to change(TestCase, :count).by(1)
     end
   end
 
