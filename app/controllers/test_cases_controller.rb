@@ -1,7 +1,6 @@
 class TestCasesController < ApplicationController
   before_filter :check_user_logged_in!
 
-
   def index
     @test = TestCase.all
     @project = Project.find(params[:project_id])
@@ -49,12 +48,12 @@ class TestCasesController < ApplicationController
       render "edit"
     end
   end
-  
+
   def edit
     @test = TestCase.find(params[:id])
     @project = Project.find(params[:project_id])
   end
-  
+
   private
   def test_params
     params.require(:test_case).permit(:status, :title, :description, :criticality, :time)
@@ -63,10 +62,10 @@ class TestCasesController < ApplicationController
   def check_admin_logged_in!
     authenticate_admin!
   end
-  
+
   def check_user_logged_in!
     if !admin_signed_in?
       authenticate_user!
-    end   
+    end
   end
 end

@@ -1,6 +1,5 @@
 class ProjectsController < ApplicationController
   before_filter :check_admin_logged_in!, :except => [:show, :index]
-
   before_filter :check_user_logged_in!, :only => [:show, :index]
 
   def index
@@ -19,7 +18,7 @@ class ProjectsController < ApplicationController
       render "new"
     end
   end
-  
+
   def show
     @project = Project.find_by_id(params[:id])
   end
@@ -32,15 +31,15 @@ class ProjectsController < ApplicationController
 
   def update
     @project = Project.find(params[:id])
-  if @project.update(project_params)
-  redirect_to @project
-  else
-    render "edit"
+    if @project.update(project_params)
+      redirect_to @project
+    else
+      render "edit"
+    end
   end
-end
-  
+
   def edit
-     @project = Project.find(params[:id])
+    @project = Project.find(params[:id])
   end
 
   private
@@ -51,10 +50,10 @@ end
   def check_admin_logged_in!
     authenticate_admin!
   end
-  
+
   def check_user_logged_in!
     if !admin_signed_in?
       authenticate_user!
-    end   
+    end
   end
 end

@@ -1,51 +1,51 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Qafree</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-	<div class="container-fluid">
-		<nav class="navbar navbar-default navbar-fixed-top">
-				<%= image_tag("logo.png") %>
-			<div class="buttons pull-right">
-				<div class="pull-left">
-					<% if user_signed_in? %>
-						<p class="greetings">
-							<b>Olá <%= current_user.email%></b>
-						</p>
-					<% elsif admin_signed_in? %>
-						<p class="greetings">
-							<b>Olá <%= current_admin.email%></b>
-						</p>
-					<% end %>
-				</div>
-				<% if user_signed_in? || admin_signed_in? %>
-					<div class="btn-group pull-right btn-main">
-						<button type="button" class="btn btn-default dropdown-toggle glyphicon glyphicon-chevron-down" data-toggle="dropdown" aria-expanded="false">
-					  </button>
-					  <ul class="dropdown-menu" role="menu">
-					    <li>
-					    	<% if admin_signed_in?%>  
-			      			<%= link_to "New User", new_register_user_path %>
-			  				<% end %>
-			  			</li>
-					    <li class="divider"></li>
-							<% if user_signed_in? %>
-								<li><%= link_to "Logout", destroy_user_session_path, :method => :delete %></li>
-							<% elsif admin_signed_in? %>
-								<li><%= link_to "Logout", destroy_admin_session_path, :method => :delete %></li>
-							<% end %>
-					  </ul>
-					</div>
-				<% end %>
-			</div>
-		</nav>
-	</div>
-	<div class="container-fluid content">
-		<%= yield %>
-	</div>
-</body>
+  <head>
+    <title>Qafree</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <div class="container-fluid">
+      <nav class="navbar navbar-default navbar-fixed-top">
+        <%= image_tag("logo.png") %>
+        <div class="buttons pull-right">
+          <div class="pull-left">
+            <% if user_signed_in? %>
+              <p class="greetings">
+                <b>Olá <%= current_user.email%></b>
+              </p>
+            <% elsif admin_signed_in? %>
+              <p class="greetings">
+                <b>Olá <%= current_admin.email%></b>
+              </p>
+            <% end %>
+          </div>
+          <% if user_signed_in? || admin_signed_in? %>
+            <div class="btn-group pull-right btn-main">
+              <button type="button" class="btn btn-default dropdown-toggle glyphicon glyphicon-chevron-down" data-toggle="dropdown" aria-expanded="false">
+              </button>
+              <ul class="dropdown-menu" role="menu">
+                <li>
+                  <% if admin_signed_in?%>  
+                    <%= link_to "New User", new_register_user_path %>
+                  <% end %>
+                </li>
+                <li class="divider"></li>
+                <% if user_signed_in? %>
+                  <li><%= link_to "Logout", destroy_user_session_path, :method => :delete %></li>
+                <% elsif admin_signed_in? %>
+                  <li><%= link_to "Logout", destroy_admin_session_path, :method => :delete %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+        </div>
+      </nav>
+    </div>
+    <div class="container-fluid content">
+      <%= yield %>
+    </div>
+  </body>
 </html>

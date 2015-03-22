@@ -1,5 +1,4 @@
 class TestPlansController < ApplicationController
-
   before_filter :check_user_logged_in!
 
   def index
@@ -40,7 +39,7 @@ class TestPlansController < ApplicationController
       redirect_to [@project, @test_plan]
     else
       render "edit"
-    end 
+    end
   end
 
   def destroy
@@ -49,7 +48,7 @@ class TestPlansController < ApplicationController
     @test_plan.destroy
     redirect_to [@project, @test_plan]
   end
-private
+  private
   def test_plan_params
     params.require(:test_plan).permit(:test_plan_name, :test_plan_description) 
   end
@@ -57,10 +56,10 @@ private
   def check_admin_logged_in!
     authenticate_admin!
   end
-  
+
   def check_user_logged_in!
     if !admin_signed_in?
       authenticate_user!
-    end   
+    end
   end
 end

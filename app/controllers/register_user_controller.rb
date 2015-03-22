@@ -4,12 +4,12 @@ class RegisterUserController < ApplicationController
   end
 
   def new
-  	@register = User.new
+    @register = User.new
   end
 
   def create
-  	@register = User.new(register_params)
-		if @register.save
+    @register = User.new(register_params)
+    if @register.save
       redirect_to root_path
     else
       render "new"
@@ -21,7 +21,8 @@ class RegisterUserController < ApplicationController
 
   def edit
   end
-private
+
+  private
   def register_params
     params.permit(:email, :password, :confirm_password)
   end

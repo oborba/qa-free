@@ -1,29 +1,29 @@
 <div class="row col-md-8 col-md-offset-1">
-    <h1 class="pull-left">Test Case List</h1>
-    <% if admin_signed_in?%>
-      <span class="pull-right new-project"> <%= link_to "New Test Case", new_project_test_case_path, class: "btn btn-primary" %> </span>
-    <% end %>
-  </div>
-  <div class="row col-md-8 col-md-offset-1">
-    <table class="table table-hover">
-      <thead>
-        <td class="col-md-9"><strong>Title</strong></td>
-        <td class="col-md-9"><strong>Time</strong></td>
-        <td class="col-md-9"><strong>Status</strong></td>
-        <td class="col-md-9"><strong>Criticality</strong></td>
-      </thead>  
-      <tbody>
-  	   <% @test.each do |test| %>
-  		  <tr>
+  <h1 class="pull-left">Test Case List</h1>
+  <% if admin_signed_in?%>
+    <span class="pull-right new-project"> <%= link_to "New Test Case", new_project_test_case_path, class: "btn btn-primary" %> </span>
+  <% end %>
+</div>
+<div class="row col-md-8 col-md-offset-1">
+  <table class="table table-hover">
+    <thead>
+      <td class="col-md-9"><strong>Title</strong></td>
+      <td class="col-md-9"><strong>Time</strong></td>
+      <td class="col-md-9"><strong>Status</strong></td>
+      <td class="col-md-9"><strong>Criticality</strong></td>
+    </thead>  
+    <tbody>
+      <% @test.each do |test| %>
+        <tr>
           <td class="col-md-2"><%= test.title%></td>
           <td class="col-md-2"><%= test.time%></td>
           <td class="col-md-2"><%= test.status%></td>
           <td class="col-md-2"><%= test.criticality%></td>
           <td class="col-md-1"><%= link_to "",[@project, test], class: "glyphicon glyphicon-search col-md-4 details" %></td>
-    		  <td class="col-md-1"><%= link_to "", "test_cases/#{test.id}/edit", class: "glyphicon glyphicon-pencil col-md-4 edit_icon"  %></td>
-    		  <td class="col-md-1"><%= link_to "", [@project, test], method: :delete, data: { confirm: 'Are you sure?' }, class: "glyphicon glyphicon-trash col-md-4 delete_icon"%></td>
+          <td class="col-md-1"><%= link_to "", "test_cases/#{test.id}/edit", class: "glyphicon glyphicon-pencil col-md-4 edit_icon"  %></td>
+          <td class="col-md-1"><%= link_to "", [@project, test], method: :delete, data: { confirm: 'Are you sure?' }, class: "glyphicon glyphicon-trash col-md-4 delete_icon"%></td>
         </tr>
       </tbody>  
-  		</ul>
-  	<% end %>
+    </ul>
+  <% end %>
 </div>
