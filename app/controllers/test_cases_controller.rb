@@ -21,7 +21,11 @@ class TestCasesController < ApplicationController
     end
     @test.project = @project
     if @test.save
-      redirect_to [@project, @test]
+      if params[:test_plan]
+        redirect_to [@project, @test_plan]
+      else
+        redirect_to [@project, @test]
+      end
     else
       render "new"
     end
