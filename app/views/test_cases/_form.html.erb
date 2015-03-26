@@ -1,4 +1,5 @@
-<%= form_for [@project, @test] do |f| %>
+<% resource_path = (test_plan ? [@project, test_plan, @test] : [@project, @test]) %>
+<%= form_for resource_path do |f| %>
   <% if @test.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@test.errors.count, "Erro") %>: * Fields are required!</h2>

@@ -47,7 +47,11 @@ class TestCasesController < ApplicationController
     @project = Project.find(params[:project_id])
     @test = TestCase.find(params[:id])
     if @test.update(test_params)
-      redirect_to [@project, @test]
+      if params[:test_plan_id]
+        redirect_to [@project, test_plan]
+      else
+        redirect_to [@project, @test]
+      end
     else
       render "edit"
     end
@@ -57,6 +61,11 @@ class TestCasesController < ApplicationController
     @test = TestCase.find(params[:id])
     @project = Project.find(params[:project_id])
   end
+
+  def test_plan
+    @test_plan ||= TestPlan.find(params[:test_plan_id]) if params[:test_plan_id].present?
+  end
+  helper_method :test_plan
 
   private
   def test_params
