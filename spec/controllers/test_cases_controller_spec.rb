@@ -2,16 +2,17 @@ require 'rails_helper'
 
 RSpec.describe TestCasesController, type: :controller do
 
-  let(:test_params) {{status: 'Blocked', title: 'test', description:'lala', criticality:'Low', time: 1}}
-  let(:project) {Project.create!({:name => "Project Name", :description => "Project Description"}) }
-  let(:test_plan) {TestPlan.create!({test_plan_name:"Test Plan"})}
+  let(:test_params) { {status: 'Blocked', title: 'test', description:'lala', criticality:'Low', time: 1} }
+  let(:project)     { Project.create!({ :name => "Project Name", :description => "Project Description" }) }
+  let(:test_plan)   { TestPlan.create!({ test_plan_name:"Test Plan" }) }
 
   before do 
     @user = User.create!({
-    :email => 'users@test.com',
-    :password => '12please',
-    :password_confirmation => '12please' 
+      :email => 'users@test.com',
+      :password => '12please',
+      :password_confirmation => '12please' 
     })
+    
     sign_in @user
   end  
 
