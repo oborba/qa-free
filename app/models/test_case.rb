@@ -7,4 +7,8 @@ class TestCase < ActiveRecord::Base
   validates_numericality_of :time
   validates :criticality, inclusion: { in: %w(Low Medium Critical)}
   validates :status, inclusion: { in: %w(Not_Executed Blocked Passed Failure)}
+
+  def has_test_plan?
+  	self.test_plans.size >= 1
+  end
 end
