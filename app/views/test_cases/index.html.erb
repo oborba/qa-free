@@ -15,13 +15,31 @@
     <tbody>
       <% @test.each do |test| %>
         <tr>
-          <td class="col-md-2"><%= test.title%></td>
-          <td class="col-md-2"><%= test.time%></td>
-          <td class="col-md-2"><%= test.status%></td>
-          <td class="col-md-2"><%= test.criticality%></td>
-          <td class="col-md-1"><%= link_to "",[@project, test], class: "glyphicon glyphicon-search col-md-4 details" %></td>
-          <td class="col-md-1"><%= link_to "", "test_cases/#{test.id}/edit", class: "glyphicon glyphicon-pencil col-md-4 edit_icon"  %></td>
-          <td class="col-md-1"><%= link_to "", [@project, test], method: :delete, data: { confirm: 'Are you sure?' }, class: "glyphicon glyphicon-trash col-md-4 delete_icon"%></td>
+          <td class="col-md-2">
+             <%= test.title%>
+               <% if test.has_test_plan? %>
+                    <span class="has-test-plan">+ Test Plan</span>
+               <% end %>
+          </td>
+          <td class="col-md-2">
+             <%= test.time %>
+          </td>
+          <td class="col-md-2">
+              <%= test.status%>
+          </td>
+          <td class="col-md-2">
+              <%= test.criticality%>
+          </td>
+          <td class="col-md-1">
+              <%= link_to "",[@project, test], class: "glyphicon glyphicon-search col-md-4 details" %>
+          </td>
+          <td class="col-md-1">
+              <%= link_to "", "test_cases/#{test.id}/edit", class: "glyphicon glyphicon-pencil col-md-4 edit_icon"  %>
+          </td>
+          <td class="col-md-1">
+              <%= link_to "", [@project, test], method: :delete, data: { confirm: 'Are you sure?' },
+                    class: "glyphicon glyphicon-trash col-md-4 delete_icon" %>
+          </td>
         </tr>
       </tbody>  
     </ul>
