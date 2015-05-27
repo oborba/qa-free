@@ -30,4 +30,19 @@ RSpec.describe TestPlan, type: :model do
   		expect(tp.persisted?).to be true
   	end
   end
+
+  describe "Status" do
+    let(:test_case) do
+      TestCase.new({
+        title: "title", criticality: "Low", status: "Failure", time: 12 
+        }
+      )
+    end
+
+    it "show all failure tests" do
+      tp = TestPlan.create(test_plan_params)
+      tp.test_cases << test_case
+      expect(tp.test_failures.size).to eq(1)
+    end
+  end
 end
