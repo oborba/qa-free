@@ -4,11 +4,11 @@ class TestPlan < ActiveRecord::Base
 
   validates_presence_of :test_plan_name
 
-  def test_failures
-  	failures = []
-		self.test_cases.each do |tc|  	
-			failures << tc if tc.status == "Failure"
-		end
-		failures
+  def number_of_tests(test_status)
+    tests = []
+    self.test_cases.each do |test_case|
+      tests << test_case if test_case.status == test_status
+    end
+    tests
   end
 end

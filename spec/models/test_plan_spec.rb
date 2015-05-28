@@ -31,18 +31,57 @@ RSpec.describe TestPlan, type: :model do
   	end
   end
 
-  describe "Status" do
-    let(:test_case) do
+  describe ".number_of_tests" do
+    let(:test_case_failure) do
       TestCase.new({
         title: "title", criticality: "Low", status: "Failure", time: 12 
         }
       )
     end
 
-    it "show all failure tests" do
-      tp = TestPlan.create(test_plan_params)
-      tp.test_cases << test_case
-      expect(tp.test_failures.size).to eq(1)
+    let(:test_case_blocked) do
+      TestCase.new({
+        title: "title", criticality: "Low", status: "Blocked", time: 12 
+        }
+      )
+    end
+
+    let(:test_case_passed) do
+      TestCase.new({
+        title: "title", criticality: "Low", status: "Passed", time: 12 
+        }
+      )
+    end
+
+    let(:test_case_not_executed) do
+      TestCase.new({
+        title: "title", criticality: "Low", status: "Not_Executed", time: 12 
+        }
+      )
+    end
+
+    it 'show passed tests' do
+      tp = TestPlan.new(test_plan_params)
+      tp.test_cases << test_case_passed
+      expect(tp.number_of_tests("Passed").size).to eq(1)
+    end
+
+    it 'show not executed tests' do
+      tp = TestPlan.new(test_plan_params)
+      tp.test_cases << test_case_not_executed
+      expect(tp.number_of_tests("Not_Executed").size).to eq(1)
+    end
+
+    it 'show failure tests' do
+      tp = TestPlan.new(test_plan_params)
+      tp.test_cases << test_case_failure
+      expect(tp.number_of_tests("Failure").size).to eq(1)
+    end
+
+    it 'show blocked tests' do
+      tp = TestPlan.new(test_plan_params)
+      tp.test_cases << test_case_blocked
+      expect(tp.number_of_tests("Blocked").size).to eq(1)
     end
   end
 end
