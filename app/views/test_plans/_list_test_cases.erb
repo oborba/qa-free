@@ -1,0 +1,24 @@
+<div class="row col-md-12">
+  <div class="row col-md-8">
+    <h2 class="pull-left">Test Cases</h2>
+    <span class="pull-right new-project"> <%= link_to "New Test Case", new_project_test_case_path(test_plan: @test_plan.id), class: "btn btn-primary" %> </span>
+  </div>
+  <div class="row col-md-8">
+    <table class="table table-hover">
+      <tbody>
+        <% @test_plan.test_cases.each do |tc| %>
+          <tr>
+            <td class="col-md-7"><%= tc.title%></td>
+            <td class="col-md-3"><%= tc.status%></td>
+            <td class="col-md-2">
+              <%= link_to "", project_test_case_path(@project, tc), class: "glyphicon glyphicon-search col-md-4 details" %>
+              <%= link_to "", edit_project_test_plan_test_case_path(@project, @test_plan, tc), class: "glyphicon glyphicon-pencil col-md-4 edit_icon" %>
+              <%= link_to "", [@project, @test_plan, tc], method: :delete, data: { confirm: 'Are you sure?' },
+                    class: "glyphicon glyphicon-trash col-md-4 delete_icon" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
