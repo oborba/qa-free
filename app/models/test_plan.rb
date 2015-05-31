@@ -9,6 +9,6 @@ class TestPlan < ActiveRecord::Base
     self.test_cases.each do |test_case|
       tests << test_case if test_case.status == test_status
     end
-    tests
+    tests.count
   end
 end
