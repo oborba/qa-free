@@ -23,8 +23,12 @@ class TestPlansController < ApplicationController
   end
 
   def show
-    @test_plan = TestPlan.find(params[:id])
-    @project = Project.find(params[:project_id])
+    @test_plan          = TestPlan.find(params[:id])
+    @project            = Project.find(params[:project_id])
+    @passed_tests       = TestPlan.find(params[:id]).number_of_tests("Passed")
+    @blocked_tests      = TestPlan.find(params[:id]).number_of_tests("Blocked")
+    @failured_tests     = TestPlan.find(params[:id]).number_of_tests("Failure")
+    @not_executed_tests = TestPlan.find(params[:id]).number_of_tests("Not_Executed")
   end
 
   def edit
