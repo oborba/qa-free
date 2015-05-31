@@ -63,25 +63,25 @@ RSpec.describe TestPlan, type: :model do
     it 'show passed tests' do
       tp = TestPlan.new(test_plan_params)
       tp.test_cases << test_case_passed
-      expect(tp.number_of_tests("Passed").size).to eq(1)
+      expect(tp.number_of_tests("Passed")).to eq(1)
     end
 
     it 'show not executed tests' do
       tp = TestPlan.new(test_plan_params)
       tp.test_cases << test_case_not_executed
-      expect(tp.number_of_tests("Not_Executed").size).to eq(1)
+      expect(tp.number_of_tests("Not_Executed")).to eq(1)
     end
 
     it 'show failure tests' do
       tp = TestPlan.new(test_plan_params)
       tp.test_cases << test_case_failure
-      expect(tp.number_of_tests("Failure").size).to eq(1)
+      expect(tp.number_of_tests("Failure")).to eq(1)
     end
 
     it 'show blocked tests' do
       tp = TestPlan.new(test_plan_params)
       tp.test_cases << test_case_blocked
-      expect(tp.number_of_tests("Blocked").size).to eq(1)
+      expect(tp.number_of_tests("Blocked")).to eq(1)
     end
   end
 end
