@@ -39,8 +39,13 @@ class TestCasesController < ApplicationController
   def destroy
     @project = Project.find(params[:project_id])
     @test = TestCase.find(params[:id])
-    @test.destroy
-    redirect_to [@project, @test]
+    if params[:test_plan_id]
+      @test.destroy
+      redirect_to [@project, test_plan]
+    else
+      @test.destroy
+      redirect_to [@project, @test]
+    end
   end
 
   def update
