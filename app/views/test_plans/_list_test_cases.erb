@@ -2,18 +2,24 @@
   <div class="col-md-4">
     <h2>Overview</h2>
     <hr>
-    <div class="row">
-      <div class="col-md-6 not_executed">
-        <%= @not_executed_tests%> <span>- Not Executed</span>
+    <div class="progress">
+      <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+        <span class="sr-only">20% Complete</span>
       </div>
-      <div class="col-md-6 failures">
-        <%= @failured_tests%> <span>- Failures</span>
+    </div>
+    <div class="progress">
+      <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+        <span class="sr-only">60% Complete (warning)</span>
       </div>
-      <div class="col-md-6 passed">
-        <%= @passed_tests%> <span>- Passed</span>
+    </div>
+    <div class="progress">
+      <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+        <span class="sr-only">80% Complete (danger)</span>
       </div>
-      <div class="col-md-6 blocked">
-        <%= @blocked_tests%> <span>- Blocked</span>
+    </div>
+    <div class="progress">
+      <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+        <span class="sr-only">40% Complete (success)</span>
       </div>
     </div>
   </div>
@@ -44,3 +50,20 @@
     </div>
   </div>
 </div>
+<script>
+  var failures     = <%= @failured_tests%>;
+  var not_executed = <%= @not_executed_tests%>;
+  var blocked      = <%= @blocked_tests%>;
+  var passed      = <%= @passed_tests%>;
+  var sum          = failures + blocked + not_executed + passed;
+
+  function percent_of(per_status, total){
+    var percent = (per_status / total) * 100;
+    return percent.toFixed(2)
+  };
+
+  $('.progress-bar-info').css('width', percent_of(not_executed, sum) + '%');
+  $('.progress-bar-warning').css('width', percent_of(blocked, sum) + '%');
+  $('.progress-bar-danger').css('width', percent_of(failures, sum) + '%');
+  $('.progress-bar-success').css('width', percent_of(passed, sum) + '%');
+</script>
