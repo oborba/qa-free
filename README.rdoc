@@ -1,5 +1,8 @@
 == README
 
+= Summary
 QaFree is a clean test manager, focusing on being simple and usual.
 
-
+= Install
+  Use ruby 2.0.0
+  Run bin/setup
