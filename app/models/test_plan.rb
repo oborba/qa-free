@@ -6,7 +6,7 @@ class TestPlan < ActiveRecord::Base
 
   def number_of_tests(test_status)
     tests = []
-    self.test_cases.each do |test_case|
+    test_cases.each do |test_case|
       tests << test_case if test_case.status == test_status
     end
     tests.count
