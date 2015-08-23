@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
-  before_filter :check_admin_logged_in!, :except => [:show, :index]
-  before_filter :check_user_logged_in!, :only => [:show, :index]
+  before_filter :check_admin_logged_in!, except: [:show, :index]
+  before_filter :check_user_logged_in!, only: [:show, :index]
 
   def index
     @project = Project.all
@@ -15,7 +15,7 @@ class ProjectsController < ApplicationController
     if @project.save
       redirect_to @project
     else
-      render "new"
+      render 'new'
     end
   end
 
@@ -34,7 +34,7 @@ class ProjectsController < ApplicationController
     if @project.update(project_params)
       redirect_to @project
     else
-      render "edit"
+      render 'edit'
     end
   end
 
@@ -43,6 +43,7 @@ class ProjectsController < ApplicationController
   end
 
   private
+
   def project_params
     params.require(:project).permit(:name, :description)
   end
@@ -52,8 +53,6 @@ class ProjectsController < ApplicationController
   end
 
   def check_user_logged_in!
-    if !admin_signed_in?
-      authenticate_user!
-    end
+    authenticate_user! unless admin_signed_in?
   end
 end

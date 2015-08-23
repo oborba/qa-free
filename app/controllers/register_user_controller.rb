@@ -12,7 +12,7 @@ class RegisterUserController < ApplicationController
     if @register.save
       redirect_to root_path
     else
-      render "new"
+      render 'new'
     end
   end
 
@@ -23,6 +23,7 @@ class RegisterUserController < ApplicationController
   end
 
   private
+
   def register_params
     params.permit(:email, :password, :confirm_password)
   end

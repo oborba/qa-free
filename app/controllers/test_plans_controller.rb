@@ -18,17 +18,17 @@ class TestPlansController < ApplicationController
     if @test_plan.save
       redirect_to [@project, @test_plan]
     else
-      render "new"
+      render 'new'
     end
   end
 
   def show
     @test_plan          = TestPlan.find(params[:id])
     @project            = Project.find(params[:project_id])
-    @passed_tests       = TestPlan.find(params[:id]).number_of_tests("Passed")
-    @blocked_tests      = TestPlan.find(params[:id]).number_of_tests("Blocked")
-    @failured_tests     = TestPlan.find(params[:id]).number_of_tests("Failure")
-    @not_executed_tests = TestPlan.find(params[:id]).number_of_tests("Not_Executed")
+    @passed_tests       = TestPlan.find(params[:id]).number_of_tests('Passed')
+    @blocked_tests      = TestPlan.find(params[:id]).number_of_tests('Blocked')
+    @failured_tests     = TestPlan.find(params[:id]).number_of_tests('Failure')
+    @not_executed_tests = TestPlan.find(params[:id]).number_of_tests('Not_Executed')
   end
 
   def edit
@@ -42,7 +42,7 @@ class TestPlansController < ApplicationController
     if @test_plan.update(test_plan_params)
       redirect_to [@project, @test_plan]
     else
-      render "edit"
+      render 'edit'
     end
   end
 
@@ -52,9 +52,11 @@ class TestPlansController < ApplicationController
     @test_plan.destroy
     redirect_to [@project, @test_plan]
   end
+
   private
+
   def test_plan_params
-    params.require(:test_plan).permit(:test_plan_name, :test_plan_description) 
+    params.require(:test_plan).permit(:test_plan_name, :test_plan_description)
   end
 
   def check_admin_logged_in!
@@ -62,8 +64,6 @@ class TestPlansController < ApplicationController
   end
 
   def check_user_logged_in!
-    if !admin_signed_in?
-      authenticate_user!
-    end
+    authenticate_user! unless admin_signed_in?
   end
 end

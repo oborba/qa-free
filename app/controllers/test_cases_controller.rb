@@ -27,7 +27,7 @@ class TestCasesController < ApplicationController
         redirect_to [@project, @test]
       end
     else
-      render "new"
+      render 'new'
     end
   end
 
@@ -58,7 +58,7 @@ class TestCasesController < ApplicationController
         redirect_to [@project, @test]
       end
     else
-      render "edit"
+      render 'edit'
     end
   end
 
@@ -73,6 +73,7 @@ class TestCasesController < ApplicationController
   helper_method :test_plan
 
   private
+
   def test_params
     params.require(:test_case).permit(:status, :title, :description, :criticality, :time)
   end
@@ -82,8 +83,6 @@ class TestCasesController < ApplicationController
   end
 
   def check_user_logged_in!
-    if !admin_signed_in?
-      authenticate_user!
-    end
+    authenticate_user! unless admin_signed_in?
   end
 end
