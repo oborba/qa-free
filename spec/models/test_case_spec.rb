@@ -1,15 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe TestCase, type: :model do
-
-  let(:test_params) { { status:"Blocked", title: "Title", description: "Description", criticality: "Low", time: 20 } }
-  let(:test_plan) { TestPlan.create({ test_plan_name: "TestPlan Name", test_plan_description: "Test Plan Description" }) }
+  let(:test_params) { { status: 'Blocked', title: 'Title', description: 'Description', criticality: 'Low', time: 20 } }
+  let(:test_plan) { TestPlan.create(test_plan_name: 'TestPlan Name', test_plan_description: 'Test Plan Description') }
 
   describe 'Presence Validate' do
-  	it 'save valid test' do
-  		test = TestCase.create(test_params)
-  		expect(test.persisted?).to be true
-  	end
+    it 'save valid test' do
+      test = TestCase.create(test_params)
+      expect(test.persisted?).to be true
+    end
 
     it 'do not save empty test' do
       test = TestCase.create
@@ -47,10 +46,10 @@ RSpec.describe TestCase, type: :model do
 
   describe '#has_test_plan?' do
     let(:has_test_plan?) { @test_case.has_test_plan? }
-    
+
     before do
       @test_case = TestCase.new(test_params)
-    end    
+    end
 
     context 'when have test plan' do
       it 'should be true' do

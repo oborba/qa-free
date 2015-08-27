@@ -6,7 +6,6 @@ class CreateTests < ActiveRecord::Migration
       t.string :description
       t.string :criticality
       t.integer :time
-
     end
   end
 end
