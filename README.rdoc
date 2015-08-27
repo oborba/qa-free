@@ -6,9 +6,3 @@ QaFree is a clean test manager, focusing on being simple and usual.
 = Install
   Use ruby 2.0.0
   Run bin/setup
-
-= Take a Tour
-Run: bundle exec rails s
-Use localhost:3000/admins/sign_in or localhost:3000/users/sign_in
-Authenticate as informed when run bin/setup to navigate.
-After your tour, run rake db:drop to erase tour setup and set your configuration use.
