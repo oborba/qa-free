@@ -7,13 +7,12 @@
   <div class="row col-md-8 col-md-offset-1">
     <table class="table table-hover">
       <tbody>
-        <% @project.each do |project| %>
+        <% @projects.each do |project| %>
           <tr>
-            <td class="col-md-9"><%= project.name%></td>
-            <td class="col-md-3">
-              <%= link_to "", project , class: "glyphicon glyphicon-search col-md-4 details"%>
-              <%= link_to "", edit_project_path(project.id), class: "glyphicon glyphicon-pencil col-md-4 edit_icon" %>
-              <%= link_to "", project, method: :delete, data: { confirm: 'Are you sure?' }, class: "glyphicon glyphicon-trash col-md-4 delete_icon" %>
+            <td class="col-md-10"><%= link_to project.name, project %></td>
+            <td class="col-md-2">
+              <%= link_to "", project , class: "glyphicon glyphicon-search col-md-6 details"%>
+              <%= link_to "", project, method: :delete, data: { confirm: 'Are you sure?' }, class: "glyphicon glyphicon-trash col-md-6 delete_icon" %>
             </td>
           </tr>
         <% end %>

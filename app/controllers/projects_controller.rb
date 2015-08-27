@@ -3,7 +3,7 @@ class ProjectsController < ApplicationController
   before_filter :check_user_logged_in!, only: [:show, :index]
 
   def index
-    @project = Project.all
+    @projects = Project.all
   end
 
   def new
