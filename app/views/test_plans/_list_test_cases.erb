@@ -35,7 +35,7 @@
         <tbody>
           <% @test_plan.test_cases.each do |tc| %>
             <tr>
-              <td class="col-md-7"><%= tc.title%></td>
+              <td class="col-md-7"><%= link_to tc.title, edit_project_test_plan_test_case_path(@project, @test_plan, tc)%></td>
               <td class="col-md-3"><%= tc.status%></td>
               <td class="col-md-2">
                 <%= link_to "", project_test_case_path(@project, tc), class: "glyphicon glyphicon-search col-md-4 details" %>
