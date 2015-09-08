@@ -1,9 +1,28 @@
 require 'rails_helper'
 
 RSpec.describe TestCasesController, type: :controller do
-  let(:test_params) { { status: 'Blocked', title: 'test', description: 'lala', criticality: 'Low', time: 1 } }
-  let(:project)     { Project.create!(name: 'Project Name', description: 'Project Description') }
-  let(:test_plan)   { TestPlan.create!(test_plan_name: 'Test Plan') }
+  let(:test_params) do
+    {
+      status: 'Blocked',
+      title: 'test',
+      description: 'lala',
+      criticality: 'Low',
+      time: 1
+    }
+  end
+
+  let(:project) do
+    Project.create!(
+      name: 'Project Name',
+      description: 'Project Description'
+    )
+  end
+
+  let(:test_plan) do
+    TestPlan.create!(
+      test_plan_name: 'Test Plan'
+    )
+  end
 
   before do
     @user = User.create!(email: 'users@test.com',
@@ -31,7 +50,10 @@ RSpec.describe TestCasesController, type: :controller do
   describe 'POST #create' do
     it 'create with a test_plan reference' do
       expect do
-        post :create, project_id: project.id, test_case: test_params, test_plan: { id: test_plan.id }
+        post :create,
+             project_id: project.id,
+             test_case: test_params,
+             test_plan: { id: test_plan.id }
       end.to change(TestCase, :count).by(1)
     end
 
