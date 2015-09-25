@@ -77,12 +77,4 @@ class TestCasesController < ApplicationController
   def test_params
     params.require(:test_case).permit(:status, :title, :description, :criticality, :time)
   end
-
-  def check_admin_logged_in!
-    authenticate_admin!
-  end
-
-  def check_user_logged_in!
-    authenticate_user! unless admin_signed_in?
-  end
 end

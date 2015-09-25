@@ -9,6 +9,6 @@ class TestCase < ActiveRecord::Base
   validates :status, inclusion: { in: %w(Not_Executed Blocked Passed Failure) }
 
   def has_test_plan?
-    test_plans.size >= 1
+    ! test_plans.empty?
   end
 end

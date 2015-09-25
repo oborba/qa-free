@@ -47,12 +47,4 @@ class ProjectsController < ApplicationController
   def project_params
     params.require(:project).permit(:name, :description)
   end
-
-  def check_admin_logged_in!
-    authenticate_admin!
-  end
-
-  def check_user_logged_in!
-    authenticate_user! unless admin_signed_in?
-  end
 end
