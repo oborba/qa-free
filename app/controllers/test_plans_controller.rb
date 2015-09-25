@@ -58,12 +58,4 @@ class TestPlansController < ApplicationController
   def test_plan_params
     params.require(:test_plan).permit(:test_plan_name, :test_plan_description)
   end
-
-  def check_admin_logged_in!
-    authenticate_admin!
-  end
-
-  def check_user_logged_in!
-    authenticate_user! unless admin_signed_in?
-  end
 end

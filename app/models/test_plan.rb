@@ -5,10 +5,6 @@ class TestPlan < ActiveRecord::Base
   validates_presence_of :test_plan_name
 
   def number_of_tests(test_status)
-    tests = []
-    test_cases.each do |test_case|
-      tests << test_case if test_case.status == test_status
-    end
-    tests.count
+    test_cases.select { |test_case| test_case.status == test_status }.count
   end
 end
