@@ -1,4 +1,5 @@
 class TestCase < ActiveRecord::Base
+  has_and_belongs_to_many :bugs
   has_and_belongs_to_many :test_plans
   belongs_to :project
 

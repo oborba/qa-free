@@ -11,86 +11,103 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_150_317_232_635) do
-  create_table 'admins', force: :cascade do |t|
-    t.string 'email',                  default: '', null: false
-    t.string 'encrypted_password',     default: '', null: false
-    t.string 'reset_password_token'
-    t.datetime 'reset_password_sent_at'
-    t.datetime 'remember_created_at'
-    t.integer 'sign_in_count', default: 0, null: false
-    t.datetime 'current_sign_in_at'
-    t.datetime 'last_sign_in_at'
-    t.string 'current_sign_in_ip'
-    t.string 'last_sign_in_ip'
-    t.datetime 'created_at'
-    t.datetime 'updated_at'
+ActiveRecord::Schema.define(version: 20151006230321) do
+
+  create_table "admins", force: :cascade do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  add_index 'admins', ['email'], name: 'index_admins_on_email', unique: true
-  add_index 'admins', ['reset_password_token'], name: 'index_admins_on_reset_password_token', unique: true
+  add_index "admins", ["email"], name: "index_admins_on_email", unique: true
+  add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
 
-  create_table 'projects', force: :cascade do |t|
-    t.datetime 'created_at',  null: false
-    t.datetime 'updated_at',  null: false
-    t.string 'name'
-    t.text 'description'
+  create_table "bugs", force: :cascade do |t|
+    t.string   "bug_title"
+    t.string   "bug_description"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "project_id"
   end
 
-  create_table 'test_cases', force: :cascade do |t|
-    t.datetime 'created_at',  null: false
-    t.datetime 'updated_at',  null: false
-    t.string 'title'
-    t.string 'description'
-    t.string 'criticality'
-    t.integer 'time'
-    t.integer 'project_id'
-    t.string 'status'
+  add_index "bugs", ["project_id"], name: "index_bugs_on_project_id"
+
+  create_table "bugs_test_cases", id: false, force: :cascade do |t|
+    t.integer "test_case_id", null: false
+    t.integer "bug_id",       null: false
   end
 
-  add_index 'test_cases', ['project_id'], name: 'index_test_cases_on_project_id'
-
-  create_table 'test_cases_plans', id: false, force: :cascade do |t|
-    t.integer 'test_plan_id', null: false
-    t.integer 'test_case_id', null: false
+  create_table "projects", force: :cascade do |t|
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "name"
+    t.text     "description"
   end
 
-  add_index 'test_cases_plans', %w(test_case_id test_plan_id), name: 'index_test_cases_plans_on_test_case_id_and_test_plan_id'
-  add_index 'test_cases_plans', %w(test_plan_id test_case_id), name: 'index_test_cases_plans_on_test_plan_id_and_test_case_id'
-
-  create_table 'test_plans', force: :cascade do |t|
-    t.string 'test_plan_name'
-    t.text 'test_plan_description'
-    t.datetime 'created_at',            null: false
-    t.datetime 'updated_at',            null: false
-    t.integer 'project_id'
+  create_table "test_cases", force: :cascade do |t|
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "title"
+    t.string   "description"
+    t.string   "criticality"
+    t.integer  "time"
+    t.integer  "project_id"
+    t.string   "status"
   end
 
-  add_index 'test_plans', ['project_id'], name: 'index_test_plans_on_project_id'
+  add_index "test_cases", ["project_id"], name: "index_test_cases_on_project_id"
 
-  create_table 'test_plans_tests', id: false, force: :cascade do |t|
-    t.integer 'test_plan_id', null: false
-    t.integer 'test_id',      null: false
+  create_table "test_cases_plans", id: false, force: :cascade do |t|
+    t.integer "test_plan_id", null: false
+    t.integer "test_case_id", null: false
   end
 
-  add_index 'test_plans_tests', %w(test_id test_plan_id), name: 'index_test_plans_tests_on_test_id_and_test_plan_id'
-  add_index 'test_plans_tests', %w(test_plan_id test_id), name: 'index_test_plans_tests_on_test_plan_id_and_test_id'
+  add_index "test_cases_plans", ["test_case_id", "test_plan_id"], name: "index_test_cases_plans_on_test_case_id_and_test_plan_id"
+  add_index "test_cases_plans", ["test_plan_id", "test_case_id"], name: "index_test_cases_plans_on_test_plan_id_and_test_case_id"
 
-  create_table 'users', force: :cascade do |t|
-    t.string 'email',                  default: '', null: false
-    t.string 'encrypted_password',     default: '', null: false
-    t.string 'reset_password_token'
-    t.datetime 'reset_password_sent_at'
-    t.datetime 'remember_created_at'
-    t.integer 'sign_in_count', default: 0, null: false
-    t.datetime 'current_sign_in_at'
-    t.datetime 'last_sign_in_at'
-    t.string 'current_sign_in_ip'
-    t.string 'last_sign_in_ip'
-    t.datetime 'created_at'
-    t.datetime 'updated_at'
+  create_table "test_plans", force: :cascade do |t|
+    t.string   "test_plan_name"
+    t.text     "test_plan_description"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.integer  "project_id"
   end
 
-  add_index 'users', ['email'], name: 'index_users_on_email', unique: true
-  add_index 'users', ['reset_password_token'], name: 'index_users_on_reset_password_token', unique: true
+  add_index "test_plans", ["project_id"], name: "index_test_plans_on_project_id"
+
+  create_table "test_plans_tests", id: false, force: :cascade do |t|
+    t.integer "test_plan_id", null: false
+    t.integer "test_id",      null: false
+  end
+
+  add_index "test_plans_tests", ["test_id", "test_plan_id"], name: "index_test_plans_tests_on_test_id_and_test_plan_id"
+  add_index "test_plans_tests", ["test_plan_id", "test_id"], name: "index_test_plans_tests_on_test_plan_id_and_test_id"
+
+  create_table "users", force: :cascade do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+
 end
