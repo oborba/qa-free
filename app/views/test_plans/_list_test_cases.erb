@@ -2,24 +2,24 @@
   <div class="col-md-4">
     <h2>Overview</h2>
     <hr>
+    <span class="align-left">  Not Executed <%= @not_executed_tests%> </span>
     <div class="progress">
       <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-        <span> <%= @not_executed_tests%> Not Executed</span>
       </div>
     </div>
+    <span> Blocked <%= @blocked_tests%> </span>
     <div class="progress">
       <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
-        <span> <%= @blocked_tests%> Blocked</span>
       </div>
     </div>
+    <span> Failed <%= @failured_tests%> </span>
     <div class="progress">
       <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
-        <span> <%= @failured_tests%> Failed</span>
       </div>
     </div>
+    <span> Passed <%= @passed_tests%> </span>
     <div class="progress">
       <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-        <span><%= @passed_tests%> Passed</span>
       </div>
     </div>
   </div>
