@@ -62,4 +62,30 @@ RSpec.describe TestCase, type: :model do
       it { expect(has_test_plan?).to eq(false) }
     end
   end
+
+  describe 'bugs' do
+    let(:bug) do 
+      Bug.create(
+        bug_title: 'title', 
+        bug_description: 'desc'
+      )
+    end
+
+    let(:test_params) do 
+      { 
+        status: 'Blocked', 
+        title: 'Title', 
+        description: 'Description', 
+        criticality: 'Low', 
+        time: 20, 
+        bugs: [bug]
+      }
+    end
+
+    let(:test_case) { TestCase.create(test_params) }
+
+    context 'test case with bug' do
+      it { expect(test_case.bugs.size).to eq(1) }
+    end
+  end
 end
