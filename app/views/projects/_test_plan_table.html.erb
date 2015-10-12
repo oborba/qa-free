@@ -1,0 +1,19 @@
+  <div>
+    <h2 class="pull-left">Test Plans</h2>
+    <span class="pull-right new-project"> <%= link_to "New Test Plan", "/projects/#{@project.id}/test_plans/new", class: "btn btn-primary" %> </span>
+  </div>
+  <div class="row col-md-12">
+    <table class="table table-hover">
+      <tbody>
+        <% @project.test_plans.each do |tp| %>
+          <tr>
+            <td class="col-md-9"><%= tp.test_plan_name%></td>
+            <td class="col-md-3">
+              <%= link_to "", "/projects/#{@project.id}/test_plans/#{tp.id}", class: "glyphicon glyphicon-search col-md-4 details" %>
+              <%= link_to "", "/projects/#{@project.id}/test_plans/#{tp.id}/edit", class: "glyphicon glyphicon-pencil col-md-4 edit_icon" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>

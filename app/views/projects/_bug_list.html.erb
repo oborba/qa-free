@@ -1,0 +1,25 @@
+  <div>
+    <h2 class="pull-left">Bugs</h2>
+    <!-- Colocar o link de novo bug
+      <span class="pull-right new-project">
+        <%=
+          link_to "New Test Plan",
+          "/projects/#{@project.id}/test_plans/new",
+          class: "btn btn-primary" %>
+       </span>
+    -->
+  </div>
+
+  <div class="row col-md-9">
+    <table class="table table-hover">
+      <tbody>
+        <% @project.bugs.each do |bug| %>
+          <tr>
+            <td class="col-md-9">
+              <%= bug.bug_title%>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>

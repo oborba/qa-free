@@ -1,0 +1,20 @@
+<div>
+  <h1>
+    <%= @project.name %>
+    <span>
+      <small>
+        <%=
+          link_to "",
+          edit_project_path,
+          class: "glyphicon glyphicon-pencil"
+        %>
+      </small>
+    </span>
+  </h1>
+  <div>
+    <strong class="panel panel-default col-md-6">
+      <%= @project.description%>
+    </strong>
+  </div>
+</div>
+
