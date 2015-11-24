@@ -1,0 +1,19 @@
+<div class="row col-md-8 col-md-offset-1">
+  <h1 class="pull-left">Bug List</h1>
+  <div class="row col-md-8 col-md-offset-1">
+    <table class="table table-hover">
+      <thead>
+        <td class="col-md-9"><strong>Title</strong></td>
+      </thead>
+
+      <tbody>
+        <% @bugs.each do |bug| %>
+          <tr>
+            <td class="col-md-2">
+              <%= bug.bug_title%>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+  </div>
+</div>
