@@ -9,7 +9,7 @@ RSpec.describe BugsController, type: :controller do
 
     sign_in @user
   end
-  
+
   let(:project) do
     Project.create(
       name: 'Project Name',
@@ -17,10 +17,17 @@ RSpec.describe BugsController, type: :controller do
     )
   end
 
-  describe "GET #index" do
-    it "returns http success" do
+  describe 'GET #index' do
+    it 'returns http success' do
       get :index, project_id: project
+
       expect(response).to have_http_status(:success)
+    end
+
+    it 'render index template' do
+      get :index, project_id: project
+
+      expect(response).to render_template(:index)
     end
   end
 end
