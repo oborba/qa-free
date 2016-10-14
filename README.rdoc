@@ -1,5 +1,3 @@
-== README
-
 = Summary
 QaFree is a clean test manager, focusing on being simple and usual.
 
