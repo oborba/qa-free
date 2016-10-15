@@ -38,7 +38,6 @@
               <td class="col-md-7"><%= link_to tc.title, edit_project_test_plan_test_case_path(@project, @test_plan, tc)%></td>
               <td class="col-md-3"><%= tc.status%></td>
               <td class="col-md-2">
-                <%= link_to "", project_test_case_path(@project, tc), class: "glyphicon glyphicon-search col-md-4 details" %>
                 <%= link_to "", edit_project_test_plan_test_case_path(@project, @test_plan, tc), class: "glyphicon glyphicon-pencil col-md-4 edit_icon" %>
                 <%= link_to "", [@project, @test_plan, tc], method: :delete, data: { confirm: 'Are you sure?' },
                       class: "glyphicon glyphicon-trash col-md-4 delete_icon" %>
